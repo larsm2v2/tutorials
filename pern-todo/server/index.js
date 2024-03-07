@@ -21,7 +21,7 @@ app.post("/todos",async(req, res) => {
             );
 
             res.json(newTodo.rows[0]);
-    } catch (er){
+    } catch (err){
         console.error(err.message);
     }
 })
