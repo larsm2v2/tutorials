@@ -2,15 +2,15 @@ import React, {Fragment, useEffect, useState} from "react";
 
 import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const CompletedTodos = () => {
 
     const [todos, setTodos] = useState([]);
 
-    //Delete todo function
+    //delete todo function
 
     const deleteTodo = async id => {
         try {
-            const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+            const deleteTodo = await fetch(`http://localhost:5000/completedtodos/${id}`, {
                 method: "DELETE"
             });
             setTodos(todos.filter(todo => todo.todo_id !== id));
@@ -20,7 +20,8 @@ const ListTodos = () => {
     } 
     const getTodos = async () => {
         try {
-            const response = await fetch("http://localhost:5000/todos");
+            
+            const response = await fetch("http://localhost:5000/completedtodos");
             const jsonData = await response.json();
             setTodos(jsonData);
         } catch (err) {
@@ -31,26 +32,19 @@ const ListTodos = () => {
         getTodos();
     }, []);
 
-    const completedTodo = async id => {
-        try {
-            const completedTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-                method: "DELETE"
-            });
-            setTodos(todos.filter(todo => todo.todo_id !== id));
-        } catch (err) {
-            console.error(err.message);
-        }
-    } 
+   
     return (
     <Fragment>
         {" "}
         <table className="table mt-5 text-center">
     <thead>
       <tr>
+        <th colspan="3">Completed</th>
+      </tr>
+      <tr>
         <th>Description</th>
         <th>Edit</th>
         <th>Delete</th>
-        <th>Completed</th>
       </tr>
     </thead>
     <tbody>
@@ -74,14 +68,6 @@ const ListTodos = () => {
                         Delete
                     </button>
                 </td>
-                <td>
-                    <button
-                    className="btn btn-primary"
-                    onClick={() => completedTodo(todo.todo_id)}
-                    >
-                        Completed
-                    </button>
-                </td>
             </tr>
         ))}
     </tbody>
@@ -90,4 +76,4 @@ const ListTodos = () => {
     )
 };
 
-export default ListTodos;
+export default CompletedTodos;

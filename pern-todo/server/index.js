@@ -79,6 +79,20 @@ app.delete("/todos/:id", async(req, res) => {
     }
 })
 
+//complete a todo????????
+//app.move("/todos/:id", async(req, res) => {
+   //try {
+        //console.log(req.params);
+        //const {id} = req.params;
+        //const completeTodo = await pool.query(
+            //"INSERT INTO completedtodo SELECT todo_id, description FROM todo WHERE todo_id = $1",
+            //[id]
+        //)
+        //res.json("Todo was copied to Completed Todos!");
+    //}catch (err) {
+        //console.error(err.message)
+    //}
+//})
 
 app.listen(5000, () => {
     console.log("The server as started on port 5000")
