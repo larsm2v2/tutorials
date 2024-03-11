@@ -1,15 +1,30 @@
-import React from 'react';
+import {React,Fragment} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HelloWorld from './HelloWorld';
+import TestPage from './TestPage'
+
+//Import Components
+import Menu from './components/Menu'
+import Title from './components/Title'
+import Board from './components/Board/Board.js'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <HelloWorld/>
-  </React.StrictMode>
+ <Fragment>
+    <Board/>
+    <div className="container">
+      <Title/>
+      <Menu/>
+    </div>
+ </Fragment>
+
+   /* <React.StrictMode></React.StrictMode> 
+         <GameMap/>
+   
+   */
 );
 
 // If you want to start measuring performance in your app, pass a function
